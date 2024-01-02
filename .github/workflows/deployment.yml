@@ -1,0 +1,36 @@
+name: Deploy Project
+on: push
+jobs:
+    test: #can name this however u want
+        runs-on: macos-latest
+        steps:
+            -   name: Get code
+                uses: actions/checkout@v3
+            -   name: Install
+                uses: actions/setup-node@v3
+                with:
+                    node-version: 18
+            -   name: Install dependencies
+                run: npm ci
+            -   name: Run test
+                run: npm test
+    deploy:
+        runs-on: macos-latest
+        steps:
+            -   name: Get code
+                uses: actions/checkout@v3
+            -   name: Install
+                uses: actions/setup-node@v3
+                with:
+                    node-version: 18
+            -   name: Install dependencies
+                run: npm ci
+            -   name: Build project
+                run: npm run build
+            -   name: Deploy
+                run: echo "Deploying..."
+                
+
+
+
+        
